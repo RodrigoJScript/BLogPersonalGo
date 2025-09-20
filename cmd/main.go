@@ -7,14 +7,9 @@ import (
 )
 
 func main() {
-	/*fs := http.FileServer(http.Dir("web"))
-	http.Handle("/", fs)
-
-	log.Println("Servidor iniciado en http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil)) */
-
 	fs := http.FileServer(http.Dir("web"))
 	http.Handle("/", fs)
 
 	log.Println("Servidor iniciado en http://localhost:8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
