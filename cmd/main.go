@@ -1,9 +1,14 @@
 package main
 
 import (
+	"database/sql"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+	"os"
+
+	_ "github.com/lib/pq"
 )
 
 type Publication struct {
@@ -12,6 +17,24 @@ type Publication struct {
 }
 
 func main() {
+
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		log.Fatal("DATABASE_URL no está configurada")
+	}
+
+	db, err := sql.Open("postgres", dbURL)
+	if err != nil {
+		log.Fatal("Error al conectar a la base de datos: ", err)
+	}
+	defer db.Close()
+
+	err = db.Ping()
+	if err != nil {
+		log.Fatal("Error al hacer ping a la base de datos: ", err)
+	}
+
+	fmt.Println("Conexión a la base de datos exitosa!")
 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 
