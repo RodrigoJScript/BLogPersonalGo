@@ -3,27 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>RodrigoJScript</title>
-    <link rel="stylesheet" href="./static/pico.violet.min.css">
+    <link rel="stylesheet" href="../static/pico.violet.min.css">
 </head>
 <body>
     <header class="container">
         <div class="grid">
-        <h1>Bienvenidos a mi sitio RodrigoJScript</h1>
+        <h2>Blogs RodrigoJScript</h2>
             <div></div>
             <div></div>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="/">ver todas las publicaciones</a></li>
+                <li><a href="/about">Crear nueva publicacion</a></li>
             </ul>
         </nav>
         </div>
     </header>
     <main class="container">
-        <h2>Home</h2>
-        <p>Esta es la pagina principal</p>
-        <button>Click me</button>
+        <div>
+            <h2>Publicaciones Recientes</h2>
+            <article class="container">
+                <h1>{{.Title}}</h1>
+                <p>{{.Content}}</p>
+            </article>
+        </div>
     </main>
     <footer class="container">
         <p>© 2025 RodrigoJScript. Todos los derechos reservados.</p>
