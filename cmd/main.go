@@ -68,6 +68,7 @@ func processLogin(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 	log.Println("Credenciales inválidas")
+
 }
 
 func serveHome(w http.ResponseWriter, r *http.Request) {
