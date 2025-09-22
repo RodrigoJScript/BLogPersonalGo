@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	validUsername = "Squad"
-	validPassword = "Squad2020"
+	validUsername = "squad"
+	validPassword = "squad2020"
 )
 
 func main() {
@@ -36,7 +36,7 @@ func main() {
 
 	http.HandleFunc("/", serveLogin)
 	http.HandleFunc("/login", processLogin)
-	http.HandleFunc("/dashboard", serveDashboard)
+	http.HandleFunc("/home", serveHome)
 
 	log.Println("Servidor iniciado en http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
@@ -61,7 +61,7 @@ func processLogin(w http.ResponseWriter, r *http.Request) {
 	password := r.FormValue("password")
 
 	if username == validUsername && password == validPassword {
-		http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
+		http.Redirect(w, r, "/home", http.StatusSeeOther)
 		log.Println("Credenciales válidas")
 		return
 	}
@@ -70,7 +70,7 @@ func processLogin(w http.ResponseWriter, r *http.Request) {
 	log.Println("Credenciales inválidas")
 }
 
-func serveDashboard(w http.ResponseWriter, r *http.Request) {
+func serveHome(w http.ResponseWriter, r *http.Request) {
 	data := struct {
 		Title   string
 		Content string
