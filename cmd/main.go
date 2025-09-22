@@ -16,11 +16,9 @@ const (
 	validPassword = "squad2020"
 )
 
-// Declara 'sessions' como una variable global, haciéndola accesible para todas las funciones.
 var sessions = map[string]string{}
 
 func main() {
-	// Descomenta este bloque al integrar la base de datos
 	/*
 	   dbURL := os.Getenv("DATABASE_URL")
 	   if dbURL == "" {
