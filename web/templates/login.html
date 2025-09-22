@@ -22,6 +22,13 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             background-color: var(--pico-card-background-color);
         }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -1rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -31,6 +38,12 @@
             <h2>Iniciar sesión</h2>
             <p>Ingresa tus credenciales para acceder</p>
         </hgroup>
+
+        {{if .Error}}
+            <div id="error-message" class="error-message">
+                Usuario o contraseña incorrectos.
+            </div>
+        {{end}}
 
         <label for="username">
             Usuario
@@ -55,10 +68,6 @@
         </label>
 
         <button type="submit">Acceder</button>
-
-        <footer>
-            <a href="#">¿Olvidaste tu contraseña?</a>
-        </footer>
     </article>
 </form>
 </body>

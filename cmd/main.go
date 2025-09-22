@@ -52,23 +52,29 @@ func serveLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func processLogin(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Método no permitido", http.StatusMethodNotAllowed)
-		return
+	data := struct {
+		Error bool
+	}{
+		Error: false,
 	}
 
-	username := r.FormValue("username")
-	password := r.FormValue("password")
+	if r.Method == http.MethodPost {
+		username := r.FormValue("username")
+		password := r.FormValue("password")
 
-	if username == validUsername && password == validPassword {
-		http.Redirect(w, r, "/home", http.StatusSeeOther)
-		log.Println("Credenciales válidas")
-		return
+		if username == validUsername && password == validPassword {
+			http.Redirect(w, r, "/home", http.StatusSeeOther)
+			log.Println("Credenciales válidas")
+			return
+		}
+		// Si la validación falla, actualizamos la estructura
+		data.Error = true
+		log.Println("Credenciales inválidas")
 	}
 
-	http.Redirect(w, r, "/", http.StatusSeeOther)
-	log.Println("Credenciales inválidas")
-
+	// Renderizamos la plantilla con los datos actualizados
+	tmpl := template.Must(template.ParseFiles("web/templates/login.html"))
+	tmpl.Execute(w, data)
 }
 
 func serveHome(w http.ResponseWriter, r *http.Request) {
