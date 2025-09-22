@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/pico.violet.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--pico-background-color);
+        }
+
+        form {
+            max-width: 400px;
+            width: 100%;
+            padding: 2rem;
+            border-radius: var(--pico-border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: var(--pico-card-background-color);
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<form action="/login" method="post">
+    <article>
+        <hgroup>
+            <h2>Iniciar sesión</h2>
+            <p>Ingresa tus credenciales para acceder</p>
+        </hgroup>
+
+        {{if .Error}}
+            <div id="error-message" class="error-message">
+                Usuario o contraseña incorrectos.
+            </div>
+        {{end}}
+
+        <label for="username">
+            Usuario
+            <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Tu nombre de usuario"
+                    required
+            >
+        </label>
+
+        <label for="password">
+            Contraseña
+            <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Tu contraseña"
+                    required
+            >
+        </label>
+
+        <button type="submit">Acceder</button>
+    </article>
+</form>
+</body>
+</html>
