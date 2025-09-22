@@ -4,6 +4,9 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"time"
+
+	"github.com/google/uuid"
 	// "database/sql"
 	_ "github.com/lib/pq"
 )
@@ -12,6 +15,9 @@ const (
 	validUsername = "squad"
 	validPassword = "squad2020"
 )
+
+// Declara 'sessions' como una variable global, haciéndola accesible para todas las funciones.
+var sessions = map[string]string{}
 
 func main() {
 	// Descomenta este bloque al integrar la base de datos
@@ -34,24 +40,15 @@ func main() {
 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 
-	http.HandleFunc("/", serveLogin)
-	http.HandleFunc("/login", processLogin)
+	http.HandleFunc("/", handleLogin)
 	http.HandleFunc("/home", serveHome)
+	http.HandleFunc("/logout", logout)
 
 	log.Println("Servidor iniciado en http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func serveLogin(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
-		return
-	}
-	tmpl := template.Must(template.ParseFiles("web/templates/login.html"))
-	tmpl.Execute(w, nil)
-}
-
-func processLogin(w http.ResponseWriter, r *http.Request) {
+func handleLogin(w http.ResponseWriter, r *http.Request) {
 	data := struct {
 		Error bool
 	}{
@@ -63,21 +60,44 @@ func processLogin(w http.ResponseWriter, r *http.Request) {
 		password := r.FormValue("password")
 
 		if username == validUsername && password == validPassword {
+			sessionToken := uuid.NewString()
+			sessions[sessionToken] = username
+			http.SetCookie(w, &http.Cookie{
+				Name:    "session_token",
+				Value:   sessionToken,
+				Expires: time.Now().Add(120 * time.Minute),
+			})
 			http.Redirect(w, r, "/home", http.StatusSeeOther)
-			log.Println("Credenciales válidas")
+			log.Println("Credenciales válidas, sesión iniciada")
 			return
 		}
-		// Si la validación falla, actualizamos la estructura
 		data.Error = true
 		log.Println("Credenciales inválidas")
 	}
 
-	// Renderizamos la plantilla con los datos actualizados
 	tmpl := template.Must(template.ParseFiles("web/templates/login.html"))
 	tmpl.Execute(w, data)
 }
 
 func serveHome(w http.ResponseWriter, r *http.Request) {
+	c, err := r.Cookie("session_token")
+	if err != nil {
+		if err == http.ErrNoCookie {
+			http.Redirect(w, r, "/", http.StatusFound)
+			return
+		}
+		http.Error(w, "Error de servidor", http.StatusInternalServerError)
+		return
+	}
+	sessionToken := c.Value
+
+	username, ok := sessions[sessionToken]
+	if !ok {
+		http.Redirect(w, r, "/", http.StatusFound)
+		return
+	}
+
+	log.Printf("Usuario '%s' ha accedido a /home", username)
 	data := struct {
 		Title   string
 		Content string
@@ -88,4 +108,22 @@ func serveHome(w http.ResponseWriter, r *http.Request) {
 
 	tmpl := template.Must(template.ParseFiles("web/templates/index.html"))
 	tmpl.Execute(w, data)
+}
+
+func logout(w http.ResponseWriter, r *http.Request) {
+	c, err := r.Cookie("session_token")
+	if err != nil {
+		http.Redirect(w, r, "/", http.StatusFound)
+		return
+	}
+
+	delete(sessions, c.Value)
+
+	http.SetCookie(w, &http.Cookie{
+		Name:    "session_token",
+		Value:   "",
+		Expires: time.Now().Add(-1 * time.Hour),
+	})
+
+	http.Redirect(w, r, "/", http.StatusFound)
 }
