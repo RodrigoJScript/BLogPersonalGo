@@ -1,0 +1,17 @@
+# Archivos de Go
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.a
+
+# Archivos de configuración local
+.env
+config.local.json
+
+# Archivos de IDEs y OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

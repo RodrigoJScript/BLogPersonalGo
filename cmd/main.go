@@ -1,9 +1,12 @@
 package main
 
 import (
+	"database/sql"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/google/uuid"
@@ -19,22 +22,21 @@ const (
 var sessions = map[string]string{}
 
 func main() {
-	/*
-	   dbURL := os.Getenv("DATABASE_URL")
-	   if dbURL == "" {
-	      log.Fatal("DATABASE_URL no está configurada")
-	   }
-	   db, err := sql.Open("postgres", dbURL)
-	   if err != nil {
-	      log.Fatal("Error al conectar a la base de datos: ", err)
-	   }
-	   defer db.Close()
-	   err = db.Ping()
-	   if err != nil {
-	      log.Fatal("Error al hacer ping a la base de datos: ", err)
-	   }
-	   fmt.Println("Conexión a la base de datos exitosa!")
-	*/
+
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		log.Fatal("DATABASE_URL no está configurada")
+	}
+	db, err := sql.Open("postgres", dbURL)
+	if err != nil {
+		log.Fatal("Error al conectar a la base de datos: ", err)
+	}
+	defer db.Close()
+	err = db.Ping()
+	if err != nil {
+		log.Fatal("Error al hacer ping a la base de datos: ", err)
+	}
+	fmt.Println("Conexión a la base de datos exitosa!")
 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 
@@ -124,4 +126,8 @@ func logout(w http.ResponseWriter, r *http.Request) {
 	})
 
 	http.Redirect(w, r, "/", http.StatusFound)
+}
+
+func insertEntry(db *sql.DB) {
+
 }
