@@ -127,3 +127,7 @@ func logout(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/", http.StatusFound)
 }
+
+func insertEntry(db *sql.DB) {
+
+}
