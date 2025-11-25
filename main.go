@@ -26,7 +26,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
-s
+
 func main() {
 	log.Println("Starting server on port 8080...")
 	fileServer := http.FileServer(http.Dir("./static"))
