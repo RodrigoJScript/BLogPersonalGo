@@ -1,29 +1,88 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{{ .titulo }}</title>
+        <title>{{ .titulo }} - AgroFresh Envios</title>
         <link rel="stylesheet" href="/assets/css/pico.violet.min.css" />
         <link rel="stylesheet" href="/assets/css/styles.css" />
     </head>
-    <body class="container">
-        <header class="grid">
-            <img src="/assets/img/logo.png" alt="Logo" class="logo" />
+    <body>
+        <header class="container">
             <nav>
-                <li><a href="/login">Iniciar sesion</a></li>
+                <ul>
+                    <li>
+                        <a href="/" class="logo-link">
+                            <img
+                                src="/assets/img/logo.png"
+                                alt="AgroFresh Envios Logo"
+                                class="logo"
+                            />
+                            <strong>AgroFresh Envios</strong>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="/login" role="button" class="secondary"
+                            >Iniciar Sesión</a
+                        >
+                    </li>
+                </ul>
             </nav>
         </header>
-        <main class="grid">
-            <section>
-                <h1>Bienvenido a AgroFresh Envios</h1>
-                <p>
-                    Esta es una aplicación web para la empresa AgroFresh Envios.
-                </p>
+
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <h1 class="hero-title">
+                        Verduras frescas, directas del campo a tu puerta.
+                    </h1>
+                    <p class="hero-subtitle">
+                        Calidad y frescura garantizada en cada envío. Rápido,
+                        fácil y confiable.
+                    </p>
+                    <a href="/rastrear" role="button" class="hero-button"
+                        >¡Rastrea ahora!</a
+                    >
+                </div>
+            </section>
+
+            <section class="container features">
+                <div class="grid">
+                    <article>
+                        <h3 class="feature-title">🥬 Frescura Insuperable</h3>
+                        <p>
+                            Seleccionamos las mejores verduras de granjas
+                            locales para asegurar que recibas productos frescos
+                            y llenos de sabor.
+                        </p>
+                    </article>
+                    <article>
+                        <h3 class="feature-title">🚚 Entrega Rápida</h3>
+                        <p>
+                            Nuestro sistema de logística optimizado garantiza
+                            que tus pedidos lleguen a tiempo, manteniendo la
+                            cadena de frío.
+                        </p>
+                    </article>
+                    <article>
+                        <h3 class="feature-title">✅ Calidad Certificada</h3>
+                        <p>
+                            Cumplimos con los más altos estándares de calidad e
+                            higiene en cada etapa, desde la cosecha hasta tu
+                            hogar.
+                        </p>
+                    </article>
+                </div>
             </section>
         </main>
-        <footer class="grid">
-            <p>&copy; 2025 AgroFresh Envios</p>
+
+        <footer class="container">
+            <small
+                >&copy; 2025 AgroFresh Envios - Todos los derechos
+                reservados.</small
+            >
         </footer>
     </body>
 </html>

@@ -1,5 +1,97 @@
+/* Paleta de colores sugerida:
+:root {
+    --color-primary: #4caf50;  // Verde fresco
+    --color-secondary: #ffc107; // Amarillo vibrante
+    --color-background: #f5f5f5; // Fondo claro
+    --color-text: #333;
+    --color-light-gray: #e0e0e0;
+}
+*/
+
+body {
+    background-color: #f8f9fa;
+}
+
 .logo {
-    width: 50%;
-    height: 100%;
-    border-radius: 20px;
+    width: 50px; /* Tamaño ajustado */
+    height: auto;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    border-radius: 8px;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+    color: white;
+    text-align: center;
+    padding: 5rem 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0 0 20px 20px;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    opacity: 0.9;
+}
+
+.hero-button {
+    font-weight: bold;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+}
+
+/* Features Section */
+.features {
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.features .grid > article {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.features .grid > article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    color: var(--pico-color-violet-600); /* Usando variable de Pico CSS */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid #e0e0e0;
 }
