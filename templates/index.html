@@ -1,81 +1,29 @@
 <!doctype html>
-<html>
+<html lang="es">
     <head>
-        <title>Blog Personal Go</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="./static/css/pico.violet.min.css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ .titulo }}</title>
+        <link rel="stylesheet" href="/assets/css/pico.violet.min.css" />
+        <link rel="stylesheet" href="/assets/css/styles.css" />
     </head>
     <body class="container">
-        <header>
-            <h1>CV</h1>
+        <header class="grid">
+            <img src="/assets/img/logo.png" alt="Logo" class="logo" />
             <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a href="/projects">Proyectos</a></li>
-                </ul>
+                <li><a href="/login">Iniciar sesion</a></li>
             </nav>
         </header>
-        <main>
+        <main class="grid">
             <section>
-                <article>
-                    <h2>Rodrigo Juarez Perez</h2>
-                    <p>Edad: 23</p>
-                    <p>Desarrollador Backend</p>
-                </article>
-                <div class="grid">
-                    <article>
-                        <h2>Sobre mi...</h2>
-                        <p>
-                            Me apasiona el desarrollo de software y la
-                            tecnología en general. Estoy comprometido con la
-                            creación de soluciones innovadoras y eficientes.
-                        </p>
-                    </article>
-
-                    <article>
-                        <h2>Experiencia Laboral</h2>
-                        <p>Empresa: Technovalue</p>
-                        <p>Puesto: Desarrollador</p>
-                        <p>Periodo: 2024 - 2025</p>
-                    </article>
-                </div>
-                <div class="grid">
-                    <article>
-                        <h2>Formación Académica</h2>
-                        <p>
-                            Universidad: Universidad Tecnológica de la Sierra
-                            Hidalguense
-                        </p>
-                        <p>
-                            Grado: Ingenieria en desarrollo y gestion de
-                            software
-                        </p>
-                        <p>Periodo: 2020 - 2024</p>
-                    </article>
-
-                    <article>
-                        <h2>Habilidades</h2>
-                        <ul>
-                            <li>Apex</li>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
-                            <li>Go</li>
-                            <li>PostgreSQL</li>
-                        </ul>
-                    </article>
-                </div>
-                <article class="grid">
-                    <p>771 122 8471</p>
-                    <p>rodrigojscript@gmail.com</p>
-                    <p>https://www.linkedin.com/in/rodrigojscript/</p>
-                </article>
+                <h1>Bienvenido a AgroFresh Envios</h1>
+                <p>
+                    Esta es una aplicación web para la empresa AgroFresh Envios.
+                </p>
             </section>
         </main>
-        <footer>
-            <small>RodrigoJScript</small>
+        <footer class="grid">
+            <p>&copy; 2025 AgroFresh Envios</p>
         </footer>
     </body>
 </html>
