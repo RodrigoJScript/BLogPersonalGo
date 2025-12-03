@@ -17,5 +17,12 @@ func main() {
 		})
 	})
 
+	r.GET("/login", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.html", gin.H{
+			"title":   "Hello, World!",
+			"message": "Welcome to my blog!",
+		})
+	})
+
 	r.Run(":8080")
 }
