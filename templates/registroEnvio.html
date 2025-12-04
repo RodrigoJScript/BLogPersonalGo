@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Registro de Envío</title>
+        <link rel="stylesheet" href="/assets/css/pico.violet.min.css" />
+        <link rel="stylesheet" href="/assets/css/registroEnvio.css" />
+    </head>
+    <body class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/" class="logo-link">
+                            <img
+                                src="/assets/img/logo.png"
+                                alt="AgroFresh Envios Logo"
+                                class="logo"
+                            />
+                            <strong>AgroFresh Envios</strong>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="/login" role="button" class="secondary"
+                            >Cerrar Sesión</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section>
+                <form action="/registroEnvio" method="POST">
+                    <div>
+                        <label for="prod">Productos:</label>
+                        <input
+                            type="text"
+                            id="prod"
+                            name="producto"
+                            placeholder="Ej: 20 cajas de tomates, 2 cajas de lechuga, etc"
+                            required
+                        />
+                    </div>
+                    <br />
+                    <div>
+                        <label for="rest">Restaurante Destino:</label>
+                        <input
+                            type="text"
+                            id="rest"
+                            name="restaurante"
+                            placeholder="Ej: Restaurante X"
+                            required
+                        />
+                    </div>
+                    <br />
+                    <button type="submit">Registar envio</button>
+                </form>
+                <a href="/">Volver al inicio</a>
+            </section>
+        </main>
+    </body>
+</html>
