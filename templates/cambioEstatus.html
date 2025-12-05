@@ -5,9 +5,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Cambio de Estatus</title>
         <link rel="stylesheet" href="/assets/css/pico.violet.min.css" />
+        <link rel="stylesheet" href="/assets/css/registroEnvio.css" />
     </head>
     <body class="container">
-        <h1>Cambio de Estatus</h1>
-        <form action="/cambioEstatus" method="post"></form>
+        <header class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/" class="logo-link">
+                            <img
+                                src="/assets/img/logo.png"
+                                alt="AgroFresh Envios Logo"
+                                class="logo"
+                            />
+                            <strong>AgroFresh Envios</strong>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="/login" role="button" class="secondary"
+                            >Iniciar Sesión</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Cambio de Estatus</h1>
+            <form action="/cambioEstatus" method="post">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" required />
+                <label for="status">Status:</label>
+                <select id="status" name="status" required>
+                    <option value="pending">Pendiente</option>
+                    <option value="in_progress">En Progreso</option>
+                    <option value="completed">Completado</option>
+                </select>
+                <button type="submit">Cambiar</button>
+            </form>
+        </main>
     </body>
 </html>
