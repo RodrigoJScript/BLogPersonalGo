@@ -2,8 +2,56 @@
 <html>
     <head>
         <title>Inicio Cliente</title>
+        <link rel="stylesheet" href="/assets/css/pico.violet.min.css" />
+        <link rel="stylesheet" href="/assets/css/registroEnvio.css" />
     </head>
     <body>
-        <h1>Bienvenido al inicio del cliente</h1>
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/" class="logo-link">
+                            <img
+                                src="/assets/img/logo.png"
+                                alt="AgroFresh Envios Logo"
+                                class="logo"
+                            />
+                            <strong>AgroFresh Envios</strong>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="/login" role="button" class="secondary"
+                            >Cerrar Sesión</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section>
+                <h2>Bienvenido, Cliente</h2>
+                <p>Esta es la página de inicio para clientes.</p>
+            </section>
+            <form action="/rastreo" method="POST">
+                <fieldset role="group">
+                    <input
+                        type="search"
+                        name="guia"
+                        placeholder="Ingresa tu número de guía (ej: 101)"
+                        required
+                    />
+                    <button type="submit">Buscar</button>
+                </fieldset>
+            </form>
+
+            {{ if .resultado }}
+            <article style="background-color: {{ .color }}; color: white;">
+                <header><strong>Estado del Envío #{{ .guia }}</strong></header>
+                <p>{{ .resultado }}</p>
+            </article>
+            {{ end }}
+        </main>
     </body>
 </html>
