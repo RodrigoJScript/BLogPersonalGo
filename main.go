@@ -38,6 +38,18 @@ func main() {
 		log.Fatal("Error conectando a la BD: ", err)
 	}
 
+	queryCrearTabla := `CREATE TABLE IF NOT EXISTS envios (
+		id SERIAL PRIMARY KEY,
+		productos TEXT NOT NULL,
+		cliente VARCHAR(255) NOT NULL,
+		tracking_number VARCHAR(100) UNIQUE NOT NULL,
+		estatus VARCHAR(50) DEFAULT 'creado',
+		fecha_hora TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+	);`
+	if _, err := db.Exec(queryCrearTabla); err != nil {
+		log.Fatal("Error creando la tabla: ", err)
+	}
+	fmt.Println("Base de datos verificada correctamente.")
 	rows, err := db.Query("SELECT id, productos, cliente, tracking_number, estatus, fecha_hora FROM envios")
 	if err != nil {
 		log.Fatal(err)
