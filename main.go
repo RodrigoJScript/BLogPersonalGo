@@ -113,5 +113,24 @@ func main() {
 		})
 	})
 
+	r.POST("/login", func(c *gin.Context) {
+		usuario := c.PostForm("username")
+		password := c.PostForm("password")
+
+		if usuario == "Almacen" && password == "Almacen" {
+			fmt.Print("Contraseña correcta")
+			c.Redirect(http.StatusFound, "/cambioEstatus")
+
+		} else if usuario == "Secretaria" && password == "Secretaria" {
+			fmt.Print("Contraseña correcta")
+			c.Redirect(http.StatusFound, "/registroEnvio")
+		} else {
+			fmt.Print("Contraseña incorrecta")
+			fmt.Println(usuario)
+			fmt.Println(password)
+			c.Redirect(http.StatusFound, "/login")
+		}
+	})
+
 	r.Run(":8080")
 }
