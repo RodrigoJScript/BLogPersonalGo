@@ -1,57 +1,153 @@
 <!doctype html>
-<html>
+<html lang="es">
     <head>
-        <title>Inicio Cliente</title>
-        <link rel="stylesheet" href="/assets/css/pico.violet.min.css" />
-        <link rel="stylesheet" href="/assets/css/registroEnvio.css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Inicio Cliente - AgroFresh</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
     </head>
-    <body class="container">
+    <body class="has-background-light" style="min-height: 100vh">
         <header>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="/" class="logo-link">
+            <nav
+                class="navbar is-white shadow-sm"
+                role="navigation"
+                aria-label="main navigation"
+            >
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/">
                             <img
                                 src="/assets/img/logo.png"
-                                alt="AgroFresh Envios Logo"
-                                class="logo"
+                                alt="Logo"
+                                style="max-height: 40px; margin-right: 10px"
                             />
                             <strong>AgroFresh Envios</strong>
                         </a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="/login" role="button" class="secondary"
-                            >Cerrar Sesión</a
-                        >
-                    </li>
-                </ul>
+
+                        <div class="navbar-item is-hidden-desktop">
+                            <a
+                                href="/login"
+                                class="button is-small is-danger is-light"
+                            >
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-menu">
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                                <a
+                                    href="/login"
+                                    class="button is-danger is-light"
+                                >
+                                    <span class="icon"
+                                        ><i class="fas fa-sign-out-alt"></i
+                                    ></span>
+                                    <span>Cerrar Sesión</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </header>
-        <main>
-            <section>
-                <h2>Bienvenido, Cliente</h2>
-                <p>Esta es la página de inicio para clientes.</p>
-            </section>
-            <form action="/rastreo" method="POST">
-                <fieldset role="group">
-                    <input
-                        type="search"
-                        name="guia"
-                        placeholder="Ingresa tu número de guía (ej: 101)"
-                        required
-                    />
-                    <button type="submit">Buscar</button>
-                </fieldset>
-            </form>
 
-            {{ if .resultado }}
-            <article style="background-color: {{ .color }}; color: white;">
-                <header><strong>Estado del Envío #{{ .guia }}</strong></header>
-                <p>{{ .resultado }}</p>
-            </article>
-            {{ end }}
+        <main>
+            <section class="hero is-success is-small">
+                <div class="hero-body">
+                    <div class="container has-text-centered">
+                        <p class="title is-3">Bienvenido, Cliente</p>
+                        <p class="subtitle is-5">
+                            Rastrea el estado de tus pedidos de verduras en
+                            tiempo real.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="columns is-centered">
+                        <div
+                            class="column is-two-thirds-tablet is-half-desktop"
+                        >
+                            <div class="box">
+                                <label
+                                    class="label is-large has-text-centered mb-4"
+                                >
+                                    🔍 Rastrear Envío
+                                </label>
+
+                                <form action="/rastreo" method="POST">
+                                    <div class="field has-addons">
+                                        <div
+                                            class="control is-expanded has-icons-left"
+                                        >
+                                            <input
+                                                class="input is-medium is-rounded"
+                                                type="search"
+                                                name="guia"
+                                                placeholder="Ingresa tu número de guía (ej: 101)"
+                                                required
+                                            />
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-barcode"></i>
+                                            </span>
+                                        </div>
+                                        <div class="control">
+                                            <button
+                                                type="submit"
+                                                class="button is-info is-medium is-rounded"
+                                            >
+                                                Buscar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p class="help">
+                                        Ingresa el ID numérico que recibiste en
+                                        tu confirmación.
+                                    </p>
+                                </form>
+                            </div>
+
+                            {{ if .resultado }}
+                            <div
+                                class="notification mt-5 shadow"
+                                style="background-color: {{ .color }};"
+                            >
+                                <div class="media">
+                                    <div class="media-left">
+                                        <span
+                                            class="icon is-large has-text-white"
+                                        >
+                                            <i
+                                                class="fas fa-info-circle fa-2x"
+                                            ></i>
+                                        </span>
+                                    </div>
+                                    <div class="media-content has-text-white">
+                                        <p class="title is-4 has-text-white">
+                                            Estado del Envío #{{ .guia }}
+                                        </p>
+                                        <p class="subtitle is-5 has-text-white">
+                                            {{ .resultado }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </body>
 </html>

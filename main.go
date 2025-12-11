@@ -144,5 +144,14 @@ func main() {
 		}
 	})
 
+	r.POST("/crearEnvio", func(c *gin.Context) {
+		restaurante := c.PostForm("rest")
+		producto := c.PostForm("prod")
+
+		fmt.Println(restaurante)
+		fmt.Println(producto)
+		c.Redirect(http.StatusFound, "/registroEnvio")
+	})
+
 	r.Run(":8080")
 }

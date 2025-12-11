@@ -1,88 +1,148 @@
 <!doctype html>
-<html lang="es" data-theme="light">
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{{ .titulo }} - AgroFresh Envios</title>
-        <link rel="stylesheet" href="/assets/css/pico.violet.min.css" />
-        <link rel="stylesheet" href="/assets/css/styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
     </head>
     <body>
-        <header class="container">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="/" class="logo-link">
+        <header>
+            <nav
+                class="navbar is-light"
+                role="navigation"
+                aria-label="main navigation"
+            >
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/">
                             <img
                                 src="/assets/img/logo.png"
                                 alt="AgroFresh Envios Logo"
-                                class="logo"
+                                style="max-height: 40px; margin-right: 10px"
                             />
                             <strong>AgroFresh Envios</strong>
                         </a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="/login" role="button" class="secondary"
-                            >Iniciar Sesión</a
-                        >
-                    </li>
-                </ul>
+
+                        <div class="navbar-item is-hidden-desktop">
+                            <a href="/login" class="button is-primary is-small">
+                                <strong>Entrar</strong>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-menu">
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                                <div class="buttons">
+                                    <a href="/login" class="button is-primary">
+                                        <strong>Iniciar Sesión</strong>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </header>
 
         <main>
-            <section class="hero">
-                <div class="container">
-                    <h1 class="hero-title">
-                        Verduras frescas, directas del campo a tu puerta.
-                    </h1>
-                    <p class="hero-subtitle">
-                        Calidad y frescura garantizada en cada envío. Rápido,
-                        fácil y confiable.
-                    </p>
-                    <a href="/inicioCliente" role="button" class="hero-button"
-                        >¡Rastrea ahora!</a
-                    >
+            <section class="hero is-success is-medium">
+                <div class="hero-body">
+                    <div class="container has-text-centered">
+                        <p class="title is-1 is-size-3-mobile">
+                            Verduras frescas, directas del campo a tu puerta.
+                        </p>
+                        <p class="subtitle is-3 is-size-5-mobile">
+                            Calidad y frescura garantizada en cada envío.
+                        </p>
+
+                        <div class="columns is-centered mt-5">
+                            <div
+                                class="column is-half is-three-quarters-mobile"
+                            >
+                                <a
+                                    href="/inicioCliente"
+                                    class="button is-primary is-fullwidth"
+                                >
+                                    Rastrear Envío
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section class="container features">
-                <div class="grid">
-                    <article>
-                        <h3 class="feature-title">🥬 Frescura Insuperable</h3>
-                        <p>
-                            Seleccionamos las mejores verduras de granjas
-                            locales para asegurar que recibas productos frescos
-                            y llenos de sabor.
-                        </p>
-                    </article>
-                    <article>
-                        <h3 class="feature-title">🚚 Entrega Rápida</h3>
-                        <p>
-                            Nuestro sistema de logística optimizado garantiza
-                            que tus pedidos lleguen a tiempo, manteniendo la
-                            cadena de frío.
-                        </p>
-                    </article>
-                    <article>
-                        <h3 class="feature-title">✅ Calidad Certificada</h3>
-                        <p>
-                            Cumplimos con los más altos estándares de calidad e
-                            higiene en cada etapa, desde la cosecha hasta tu
-                            hogar.
-                        </p>
-                    </article>
+            <section class="section">
+                <div class="container">
+                    <div class="columns is-variable is-8 is-desktop">
+                        <div class="column has-text-centered">
+                            <article class="box h-100" style="height: 100%">
+                                <div class="content">
+                                    <span class="is-size-1">🥬</span>
+                                    <h3 class="title is-4 mt-2">
+                                        Frescura Insuperable
+                                    </h3>
+                                    <p>
+                                        Seleccionamos las mejores verduras de
+                                        granjas locales para asegurar que
+                                        recibas productos frescos y llenos de
+                                        sabor.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <article class="box" style="height: 100%">
+                                <div class="content">
+                                    <span class="is-size-1">🚚</span>
+                                    <h3 class="title is-4 mt-2">
+                                        Entrega Rápida
+                                    </h3>
+                                    <p>
+                                        Nuestro sistema de logística optimizado
+                                        garantiza que tus pedidos lleguen a
+                                        tiempo, manteniendo la cadena de frío.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <article class="box" style="height: 100%">
+                                <div class="content">
+                                    <span class="is-size-1">✅</span>
+                                    <h3 class="title is-4 mt-2">
+                                        Calidad Certificada
+                                    </h3>
+                                    <p>
+                                        Cumplimos con los más altos estándares
+                                        de calidad e higiene en cada etapa,
+                                        desde la cosecha hasta tu hogar.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
 
-        <footer class="container">
-            <small
-                >&copy; 2025 AgroFresh Envios - Todos los derechos
-                reservados.</small
-            >
+        <footer class="footer has-background-light">
+            <div class="content has-text-centered">
+                <p>
+                    &copy; 2025 <strong>AgroFresh Envios</strong>. Todos los
+                    derechos reservados.
+                </p>
+            </div>
         </footer>
     </body>
 </html>

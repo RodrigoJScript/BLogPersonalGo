@@ -2,62 +2,212 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <title>Lista de Envíos</title>
-        <link rel="stylesheet" href="/assets/css/pico.violet.min.css" />
-        <link rel="stylesheet" href="/assets/css/registroEnvio.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lista de Envíos - AgroFresh</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
     </head>
-    <body>
-        <header class="container">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="/" class="logo-link">
+    <body class="has-background-light" style="min-height: 100vh">
+        <header>
+            <nav
+                class="navbar is-white shadow-sm"
+                role="navigation"
+                aria-label="main navigation"
+            >
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/">
                             <img
                                 src="/assets/img/logo.png"
-                                alt="AgroFresh Envios Logo"
-                                class="logo"
+                                alt="Logo"
+                                style="max-height: 40px; margin-right: 10px"
                             />
                             <strong>AgroFresh Envios</strong>
                         </a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="/login" role="button" class="secondary"
-                            >Cerrar Sesión</a
-                        >
-                    </li>
-                </ul>
+
+                        <div class="navbar-item is-hidden-desktop">
+                            <a
+                                href="/crearEnvio"
+                                class="button is-small is-success is-light"
+                            >
+                                <i class="fas fa-plus"></i>
+                            </a>
+                            <a
+                                href="/login"
+                                class="button is-small is-danger is-light ml-2"
+                            >
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-menu">
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                                <div class="buttons">
+                                    <a
+                                        href="/crearEnvio"
+                                        class="button is-success"
+                                    >
+                                        <span class="icon"
+                                            ><i class="fas fa-plus"></i
+                                        ></span>
+                                        <span>Nuevo Envío</span>
+                                    </a>
+                                    <a
+                                        href="/login"
+                                        class="button is-danger is-light"
+                                    >
+                                        <span class="icon"
+                                            ><i class="fas fa-sign-out-alt"></i
+                                        ></span>
+                                        <span>Cerrar Sesión</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </header>
 
-        <main class="container">
-            <h1>Lista de Envíos</h1>
+        <main>
+            <section class="section">
+                <div class="container">
+                    <nav class="breadcrumb" aria-label="breadcrumbs">
+                        <ul>
+                            <li><a href="/">Inicio</a></li>
+                            <li class="is-active">
+                                <a href="#" aria-current="page"
+                                    >Lista de Envíos</a
+                                >
+                            </li>
+                        </ul>
+                    </nav>
 
-            <table role="grid">
-                <thead>
-                    <tr>
-                        <th scope="col">No. Pedido</th>
-                        <th scope="col">Productos</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Fecha/Hora Último Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{ range .envios }}
-                    <tr>
-                        <td>#{{ .ID }}</td>
-                        <td>{{ .Productos }}</td>
-                        <td>{{ .Cliente }}</td>
-                        <td>{{ .Fecha }}</td>
-                    </tr>
-                    {{ else }}
-                    <tr>
-                        <td colspan="4">No hay envíos registrados.</td>
-                    </tr>
-                    {{ end }}
-                </tbody>
-            </table>
+                    <div class="box">
+                        <div class="level">
+                            <div class="level-left">
+                                <div class="level-item">
+                                    <h1
+                                        class="title is-4 has-text-success-dark"
+                                    >
+                                        <i class="fas fa-list-alt mr-2"></i>
+                                        Historial de Envíos
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="level-right is-hidden-mobile">
+                                <div class="level-item">
+                                    <a
+                                        href="/crearEnvio"
+                                        class="button is-small is-primary is-outlined"
+                                    >
+                                        Registrar otro envío
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-container">
+                            <table
+                                class="table is-fullwidth is-striped is-hoverable"
+                            >
+                                <thead>
+                                    <tr class="has-background-success-light">
+                                        <th class="has-text-success-dark">
+                                            <span class="icon-text">
+                                                <span class="icon"
+                                                    ><i
+                                                        class="fas fa-hashtag"
+                                                    ></i
+                                                ></span>
+                                                <span>Pedido</span>
+                                            </span>
+                                        </th>
+                                        <th class="has-text-success-dark">
+                                            <span class="icon-text">
+                                                <span class="icon"
+                                                    ><i
+                                                        class="fas fa-box-open"
+                                                    ></i
+                                                ></span>
+                                                <span>Productos</span>
+                                            </span>
+                                        </th>
+                                        <th class="has-text-success-dark">
+                                            <span class="icon-text">
+                                                <span class="icon"
+                                                    ><i class="fas fa-user"></i
+                                                ></span>
+                                                <span>Cliente</span>
+                                            </span>
+                                        </th>
+                                        <th class="has-text-success-dark">
+                                            <span class="icon-text">
+                                                <span class="icon"
+                                                    ><i class="fas fa-clock"></i
+                                                ></span>
+                                                <span
+                                                    >Última Actualización</span
+                                                >
+                                            </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{ range .envios }}
+                                    <tr>
+                                        <td>
+                                            <span
+                                                class="tag is-success is-light is-medium"
+                                            >
+                                                <strong>#{{ .ID }}</strong>
+                                            </span>
+                                        </td>
+                                        <td>{{ .Productos }}</td>
+                                        <td><strong>{{ .Cliente }}</strong></td>
+                                        <td class="is-size-7 has-text-grey">
+                                            {{ .Fecha }}
+                                        </td>
+                                    </tr>
+                                    {{ else }}
+                                    <tr>
+                                        <td colspan="4">
+                                            <div
+                                                class="notification is-warning is-light has-text-centered"
+                                            >
+                                                <span class="icon is-large">
+                                                    <i
+                                                        class="fas fa-box-open fa-2x"
+                                                    ></i>
+                                                </span>
+                                                <p>
+                                                    No hay envíos registrados en
+                                                    el sistema.
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{ end }}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="has-text-right mt-3">
+                            <p class="is-size-7 has-text-grey">
+                                Mostrando registros recientes
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </body>
 </html>

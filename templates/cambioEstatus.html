@@ -3,47 +3,155 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Cambio de Estatus</title>
-        <link rel="stylesheet" href="/assets/css/pico.violet.min.css" />
-        <link rel="stylesheet" href="/assets/css/registroEnvio.css" />
+        <title>Cambio de Estatus - AgroFresh</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
     </head>
-    <body class="container">
-        <header class="container">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="/" class="logo-link">
+    <body class="has-background-light" style="min-height: 100vh">
+        <header>
+            <nav
+                class="navbar is-white shadow-sm"
+                role="navigation"
+                aria-label="main navigation"
+            >
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/">
                             <img
                                 src="/assets/img/logo.png"
-                                alt="AgroFresh Envios Logo"
-                                class="logo"
+                                alt="Logo"
+                                style="max-height: 40px; margin-right: 10px"
                             />
                             <strong>AgroFresh Envios</strong>
                         </a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="/login" role="button" class="secondary"
-                            >Iniciar Sesión</a
-                        >
-                    </li>
-                </ul>
+
+                        <div class="navbar-item is-hidden-desktop">
+                            <a
+                                href="/login"
+                                class="button is-small is-primary is-light"
+                            >
+                                <i class="fas fa-user"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-menu">
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                                <a
+                                    href="/login"
+                                    class="button is-primary is-light"
+                                >
+                                    <strong>Iniciar Sesión</strong>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </header>
+
         <main>
-            <h1>Cambio de Estatus</h1>
-            <form action="/cambioEstatus" method="post">
-                <label for="id">Tracking number:</label>
-                <input type="text" id="id" name="id" required />
-                <label for="status">Status:</label>
-                <select id="status" name="status" required>
-                    <option value="pending">Pendiente</option>
-                    <option value="in_progress">En Progreso</option>
-                    <option value="completed">Completado</option>
-                </select>
-                <button type="submit">Cambiar</button>
-            </form>
+            <section class="section">
+                <div class="container">
+                    <div class="columns is-centered">
+                        <div class="column is-one-third-desktop is-half-tablet">
+                            <div class="box">
+                                <h1
+                                    class="title is-4 has-text-centered has-text-success-dark"
+                                >
+                                    <span class="icon-text">
+                                        <span class="icon"
+                                            ><i class="fas fa-edit"></i
+                                        ></span>
+                                        <span>Actualizar Estado</span>
+                                    </span>
+                                </h1>
+                                <hr />
+
+                                <form action="/cambioEstatus" method="post">
+                                    <div class="field">
+                                        <label class="label" for="id"
+                                            >Número de Rastreo (ID)</label
+                                        >
+                                        <div class="control has-icons-left">
+                                            <input
+                                                class="input is-medium"
+                                                type="text"
+                                                id="id"
+                                                name="id"
+                                                placeholder="Ej: 105"
+                                                required
+                                            />
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-hashtag"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <label class="label" for="status"
+                                            >Nuevo Estatus</label
+                                        >
+                                        <div class="control has-icons-left">
+                                            <div
+                                                class="select is-fullwidth is-medium"
+                                            >
+                                                <select
+                                                    id="status"
+                                                    name="status"
+                                                    required
+                                                >
+                                                    <option
+                                                        value=""
+                                                        disabled
+                                                        selected
+                                                    >
+                                                        Selecciona una opción
+                                                    </option>
+                                                    <option value="pending">
+                                                        ⏳ Pendiente
+                                                    </option>
+                                                    <option value="in_progress">
+                                                        🚚 En Progreso
+                                                    </option>
+                                                    <option value="completed">
+                                                        ✅ Completado
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-tasks"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="field mt-5">
+                                        <button
+                                            type="submit"
+                                            class="button is-success is-fullwidth is-medium"
+                                        >
+                                            <strong>Guardar Cambios</strong>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="has-text-centered mt-3">
+                                <a href="/" class="is-size-7 has-text-grey"
+                                    >← Volver al inicio</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </body>
 </html>
