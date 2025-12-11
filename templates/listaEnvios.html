@@ -34,13 +34,15 @@
                         <div class="navbar-item is-hidden-desktop">
                             <a
                                 href="/crearEnvio"
-                                class="button is-small is-success is-light"
+                                class="button is-small"
+                                style="background-color: #57cc99; color: white"
                             >
                                 <i class="fas fa-plus"></i>
                             </a>
                             <a
                                 href="/login"
-                                class="button is-small is-danger is-light ml-2"
+                                class="button is-small ml-2"
+                                style="background-color: #22577a; color: white"
                             >
                                 <i class="fas fa-sign-out-alt"></i>
                             </a>
@@ -53,7 +55,11 @@
                                 <div class="buttons">
                                     <a
                                         href="/crearEnvio"
-                                        class="button is-success"
+                                        class="button"
+                                        style="
+                                            background-color: #57cc99;
+                                            color: white;
+                                        "
                                     >
                                         <span class="icon"
                                             ><i class="fas fa-plus"></i
@@ -62,7 +68,11 @@
                                     </a>
                                     <a
                                         href="/login"
-                                        class="button is-danger is-light"
+                                        class="button"
+                                        style="
+                                            background-color: #22577a;
+                                            color: white;
+                                        "
                                     >
                                         <span class="icon"
                                             ><i class="fas fa-sign-out-alt"></i
@@ -96,7 +106,8 @@
                             <div class="level-left">
                                 <div class="level-item">
                                     <h1
-                                        class="title is-4 has-text-success-dark"
+                                        class="title is-4"
+                                        style="color: #38a3a5"
                                     >
                                         <i class="fas fa-list-alt mr-2"></i>
                                         Historial de Envíos
@@ -107,7 +118,11 @@
                                 <div class="level-item">
                                     <a
                                         href="/crearEnvio"
-                                        class="button is-small is-primary is-outlined"
+                                        class="button is-small"
+                                        style="
+                                            background-color: #80ed99;
+                                            color: black;
+                                        "
                                     >
                                         Registrar otro envío
                                     </a>
@@ -119,9 +134,9 @@
                             <table
                                 class="table is-fullwidth is-striped is-hoverable"
                             >
-                                <thead>
-                                    <tr class="has-background-success-light">
-                                        <th class="has-text-success-dark">
+                                <thead style="background-color: #80ed99">
+                                    <tr>
+                                        <th style="color: #38a3a5">
                                             <span class="icon-text">
                                                 <span class="icon"
                                                     ><i
@@ -131,7 +146,7 @@
                                                 <span>Pedido</span>
                                             </span>
                                         </th>
-                                        <th class="has-text-success-dark">
+                                        <th style="color: #38a3a5">
                                             <span class="icon-text">
                                                 <span class="icon"
                                                     ><i
@@ -141,7 +156,7 @@
                                                 <span>Productos</span>
                                             </span>
                                         </th>
-                                        <th class="has-text-success-dark">
+                                        <th style="color: #38a3a5">
                                             <span class="icon-text">
                                                 <span class="icon"
                                                     ><i class="fas fa-user"></i
@@ -149,7 +164,7 @@
                                                 <span>Cliente</span>
                                             </span>
                                         </th>
-                                        <th class="has-text-success-dark">
+                                        <th style="color: #38a3a5">
                                             <span class="icon-text">
                                                 <span class="icon"
                                                     ><i class="fas fa-clock"></i
@@ -166,7 +181,11 @@
                                     <tr>
                                         <td>
                                             <span
-                                                class="tag is-success is-light is-medium"
+                                                class="tag is-medium"
+                                                style="
+                                                    background-color: #57cc99;
+                                                    color: white;
+                                                "
                                             >
                                                 <strong>#{{ .ID }}</strong>
                                             </span>
