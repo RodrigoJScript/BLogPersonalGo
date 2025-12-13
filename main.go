@@ -4,8 +4,10 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
+	"strconv"
 	"text/tabwriter"
 	"time"
 
@@ -145,11 +147,28 @@ func main() {
 	})
 
 	r.POST("/crearEnvio", func(c *gin.Context) {
-		restaurante := c.PostForm("rest")
-		producto := c.PostForm("prod")
+		restaurante := c.PostForm("restaurante")
+		producto := c.PostForm("producto")
+		estatus := "enviado"
+		ahora := time.Now()
 
-		fmt.Println(restaurante)
-		fmt.Println(producto)
+		var trackingSKU string = "TN-" + strconv.Itoa(rand.Intn(1000000))
+		fmt.Print(trackingSKU)
+		sqlStatement := `
+			INSERT INTO envios (productos, cliente, tracking_number, estatus, fecha_hora)
+			VALUES ($1, $2, $3, $4, $5)
+			RETURNING id`
+
+		var newID int
+
+		err := db.QueryRow(sqlStatement, producto, restaurante, trackingSKU, estatus, ahora).Scan(&newID)
+		if err != nil {
+			fmt.Println(err)
+			c.Redirect(http.StatusFound, "/registroEnvio")
+		} else {
+			fmt.Println("ID del nuevo envío:", newID)
+		}
+
 		c.Redirect(http.StatusFound, "/registroEnvio")
 	})
 
