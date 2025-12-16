@@ -25,6 +25,15 @@ type Envio struct {
 	FechaHora      time.Time
 }
 
+type EnvioView struct {
+	ID             int
+	TrackingNumber string
+	Productos      string
+	Estatus        string
+	Cliente        string
+	Fecha          string
+}
+
 func main() {
 	_ = godotenv.Load()
 
@@ -114,16 +123,43 @@ func main() {
 	})
 
 	r.GET("/listaEnvios", func(ctx *gin.Context) {
+		rows, err := db.Query("SELECT id, tracking_number, productos, cliente, estatus, fecha_hora FROM envios ORDER BY fecha_hora DESC")
+		if err != nil {
+			ctx.String(http.StatusInternalServerError, "Error al consultar los envíos")
+			log.Println(err)
+			return
+		}
+		defer rows.Close()
+
+		var envios []EnvioView
+		for rows.Next() {
+			var e Envio
+			var eV EnvioView
+			if err := rows.Scan(&e.ID, &e.TrackingNumber, &e.Productos, &e.Cliente, &e.Estatus, &e.FechaHora); err != nil {
+				ctx.String(http.StatusInternalServerError, "Error al escanear los envíos")
+				log.Println(err)
+				return
+			}
+			eV.ID = e.ID
+			eV.TrackingNumber = e.TrackingNumber
+			eV.Productos = e.Productos
+			eV.Cliente = e.Cliente
+			eV.Estatus = e.Estatus
+			eV.Fecha = e.FechaHora.Format("2006-01-02 15:04")
+			envios = append(envios, eV)
+		}
+
 		ctx.HTML(http.StatusOK, "listaEnvios.html", gin.H{
-			"title":   "Hello, World!",
-			"message": "Welcome to my blog!",
+			"envios": envios,
 		})
 	})
 
 	r.GET("/registroEnvio", func(ctx *gin.Context) {
+		trackingSKU := ctx.Query("trackingSKU")
 		ctx.HTML(http.StatusOK, "registroEnvio.html", gin.H{
-			"title":   "Hello, World!",
-			"message": "Welcome to my blog!",
+			"title":       "Registrar Envío",
+			"message":     "Welcome to my blog!",
+			"TrackingSKU": trackingSKU,
 		})
 	})
 
@@ -152,7 +188,7 @@ func main() {
 		estatus := "enviado"
 		ahora := time.Now()
 
-		var trackingSKU string = "TN-" + strconv.Itoa(rand.Intn(1000000))
+		var trackingSKU string = strconv.Itoa(rand.Intn(1000000))
 		fmt.Print(trackingSKU)
 		sqlStatement := `
 			INSERT INTO envios (productos, cliente, tracking_number, estatus, fecha_hora)
@@ -167,9 +203,30 @@ func main() {
 			c.Redirect(http.StatusFound, "/registroEnvio")
 		} else {
 			fmt.Println("ID del nuevo envío:", newID)
+			fmt.Print("Numero de envio", trackingSKU)
+			c.Redirect(http.StatusFound, "/registroEnvio?trackingSKU="+trackingSKU)
 		}
 
-		c.Redirect(http.StatusFound, "/registroEnvio")
+	})
+
+	r.POST("/cambioEstatus", func(ctx *gin.Context) {
+		trackingNumber := ctx.PostForm("id")
+		estatus := ctx.PostForm("status")
+		fmt.Println(trackingNumber)
+		// ctx.Redirect(http.StatusFound, "/cambioEstatus")
+		sqlStatement := `
+			UPDATE envios
+			SET estatus = $1
+			WHERE tracking_number = $2`
+
+		_, err := db.Exec(sqlStatement, estatus, trackingNumber)
+		if err != nil {
+			fmt.Println(err)
+			ctx.Redirect(http.StatusFound, "/cambioEstatus")
+		} else {
+			fmt.Println("Estatus actualizado")
+			ctx.Redirect(http.StatusFound, "/cambioEstatus")
+		}
 	})
 
 	r.Run(":8080")

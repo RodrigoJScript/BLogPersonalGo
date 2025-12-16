@@ -175,6 +175,22 @@
                                                 >
                                             </span>
                                         </th>
+                                        <th style="color: #776731">
+                                            <span class="icon-text">
+                                                <span class="icon"
+                                                    ><i class="fas fa-check"></i
+                                                ></span>
+                                                <span>Estatus</span>
+                                            </span>
+                                        </th>
+                                        <th style="color: #776731">
+                                            <span class="icon-text">
+                                                <span class="icon"
+                                                    ><i class="fas fa-check"></i
+                                                ></span>
+                                                <span>Tracking Number</span>
+                                            </span>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -195,6 +211,12 @@
                                         <td><strong>{{ .Cliente }}</strong></td>
                                         <td class="is-size-7 has-text-grey">
                                             {{ .Fecha }}
+                                        </td>
+                                        <td class="is-size-7 has-text-grey">
+                                            {{ .Estatus }}
+                                        </td>
+                                        <td class="is-size-7 has-text-grey">
+                                            {{ .TrackingNumber }}
                                         </td>
                                     </tr>
                                     {{ else }}
