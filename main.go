@@ -229,5 +229,50 @@ func main() {
 		}
 	})
 
+	r.POST("/obtenerEnvio", func(ctx *gin.Context) {
+		trackingNumberUser := ctx.PostForm("tracking_number")
+		fmt.Println("Numero de envio", trackingNumberUser)
+		sqlStatement := `
+			SELECT productos, cliente, tracking_number, estatus, fecha_hora
+			FROM envios
+			WHERE tracking_number = $1`
+		rows, err := db.Query(sqlStatement, trackingNumberUser)
+		if err != nil {
+			fmt.Println(err)
+			ctx.Redirect(http.StatusFound, "/inicioCliente")
+		}
+		defer rows.Close()
+
+		var productos, cliente, trackingNumber, estatus string
+		var fechaHora time.Time
+
+		if rows.Next() {
+			err := rows.Scan(&productos, &cliente, &trackingNumber, &estatus, &fechaHora)
+			if err != nil {
+				fmt.Println(err)
+				ctx.HTML(http.StatusOK, "inicioCliente.html", gin.H{
+					"resultado": "Error al procesar el envío.",
+					"color":     "hsl(348, 100%, 61%)",
+					"guia":      trackingNumberUser,
+				})
+				return
+			}
+			ctx.HTML(http.StatusOK, "inicioCliente.html", gin.H{
+				"encontrado": true,
+				"productos":  productos,
+				"cliente":    cliente,
+				"guia":       trackingNumber,
+				"estatus":    estatus,
+				"fechaHora":  fechaHora.Format("02/01/2006 15:04"),
+			})
+		} else {
+			ctx.HTML(http.StatusOK, "inicioCliente.html", gin.H{
+				"resultado": "No se encontró ningún envío con ese número de guía.",
+				"color":     "hsl(48, 100%, 67%)",
+				"guia":      trackingNumberUser,
+			})
+		}
+	})
+
 	r.Run(":8080")
 }

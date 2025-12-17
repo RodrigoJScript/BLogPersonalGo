@@ -92,7 +92,7 @@
                                     🔍 Rastrear Envío
                                 </label>
 
-                                <form action="/rastreo" method="POST">
+                                <form action="/obtenerEnvio" method="POST">
                                     <div class="field has-addons">
                                         <div
                                             class="control is-expanded has-icons-left"
@@ -100,7 +100,7 @@
                                             <input
                                                 class="input is-medium is-rounded"
                                                 type="search"
-                                                name="guia"
+                                                name="tracking_number"
                                                 placeholder="Ingresa tu número de guía (ej: 101)"
                                                 required
                                             />
@@ -128,24 +128,58 @@
                                 </form>
                             </div>
 
-                            {{ if .resultado }}
+                            <!-- Bloque para mostrar resultados -->
+                            {{ if .encontrado }}
+                            <div class="notification is-success mt-5 shadow">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <span class="icon is-large">
+                                            <i
+                                                class="fas fa-check-circle fa-2x"
+                                            ></i>
+                                        </span>
+                                    </div>
+                                    <div class="media-content">
+                                        <p class="title is-4">
+                                            Envío #{{ .guia }}
+                                        </p>
+                                        <p>
+                                            <strong>Cliente:</strong> {{
+                                            .cliente }}
+                                        </p>
+                                        <p>
+                                            <strong>Productos:</strong> {{
+                                            .productos }}
+                                        </p>
+                                        <p>
+                                            <strong>Estado:</strong> {{ .estatus
+                                            }}
+                                        </p>
+                                        <p>
+                                            <strong
+                                                >Última Actualización:</strong
+                                            >
+                                            {{ .fechaHora }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ else if .resultado }}
                             <div
                                 class="notification mt-5 shadow"
-                                style="background-color: {{ .color }};"
+                                style="background-color: {{ .color }}; color: white;"
                             >
                                 <div class="media">
                                     <div class="media-left">
-                                        <span
-                                            class="icon is-large has-text-white"
-                                        >
+                                        <span class="icon is-large">
                                             <i
                                                 class="fas fa-info-circle fa-2x"
                                             ></i>
                                         </span>
                                     </div>
-                                    <div class="media-content has-text-white">
+                                    <div class="media-content">
                                         <p class="title is-4 has-text-white">
-                                            Estado del Envío #{{ .guia }}
+                                            Aviso sobre el envío #{{ .guia }}
                                         </p>
                                         <p class="subtitle is-5 has-text-white">
                                             {{ .resultado }}
