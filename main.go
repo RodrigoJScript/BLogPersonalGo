@@ -109,9 +109,18 @@ func main() {
 	})
 
 	r.GET("/cambioEstatus", func(c *gin.Context) {
+		success := c.Query("success")
+		trackingNumber := c.Query("trackingNumber")
+		var message string
+		if success == "true" {
+			message = fmt.Sprintf("El estatus del envío %s ha sido actualizado.", trackingNumber)
+		} else if success == "false" {
+			message = "Hubo un error al actualizar el estatus del envío."
+		}
+
 		c.HTML(http.StatusOK, "cambioEstatus.html", gin.H{
-			"title":   "Hello, World!",
-			"message": "Welcome to my blog!",
+			"title":   "Cambio de Estatus",
+			"message": message,
 		})
 	})
 
@@ -222,10 +231,10 @@ func main() {
 		_, err := db.Exec(sqlStatement, estatus, trackingNumber)
 		if err != nil {
 			fmt.Println(err)
-			ctx.Redirect(http.StatusFound, "/cambioEstatus")
+			ctx.Redirect(http.StatusFound, "/cambioEstatus?success=false")
 		} else {
 			fmt.Println("Estatus actualizado")
-			ctx.Redirect(http.StatusFound, "/cambioEstatus")
+			ctx.Redirect(http.StatusFound, "/cambioEstatus?success=true&trackingNumber="+trackingNumber)
 		}
 	})
 

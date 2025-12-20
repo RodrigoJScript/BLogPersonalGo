@@ -1,195 +1,190 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Inicio Cliente - AgroFresh</title>
+        <script src="https://cdn.tailwindcss.com"></script>
         <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+            type="text/css"
         />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            avocado: {
+                                50: "#f3f5f0",
+                                100: "#e5e9de",
+                                200: "#cfd5c1",
+                                300: "#b0bb9b",
+                                400: "#89986d",
+                                500: "#76855d",
+                                600: "#5c6947",
+                                700: "#485239",
+                                800: "#3c4331",
+                                900: "#343a2d",
+                                950: "#1a1e15",
+                            },
+                        },
+                    },
+                },
+            };
+        </script>
     </head>
-    <body style="background-color: #f7f8ee; min-height: 100vh">
-        <header>
-            <nav
-                class="navbar shadow-sm"
-                role="navigation"
-                aria-label="main navigation"
-                style="background-color: #f7f8ee"
-            >
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="/">
-                            <img
-                                src="/assets/img/logo.png"
-                                alt="Logo"
-                                style="max-height: 40px; margin-right: 10px"
-                            />
-                            <strong>AgroFresh Envios</strong>
-                        </a>
-
-                        <div class="navbar-item is-hidden-desktop">
-                            <a
-                                href="/login"
-                                class="button is-small"
-                                style="background-color: #65552e; color: white"
-                            >
-                                <i class="fas fa-sign-out-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="navbar-menu">
-                        <div class="navbar-end">
-                            <div class="navbar-item">
-                                <a
-                                    href="/login"
-                                    class="button"
-                                    style="
-                                        background-color: #65552e;
-                                        color: white;
-                                    "
-                                >
-                                    <span class="icon"
-                                        ><i class="fas fa-sign-out-alt"></i
-                                    ></span>
-                                    <span>Cerrar Sesión</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+    <body
+        class="bg-avocado-50 min-h-screen flex flex-col font-sans text-avocado-900"
+    >
+        <!-- Navbar -->
+        <header
+            class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 border-b border-avocado-100 shadow-sm"
+        >
+            <div class="navbar container mx-auto px-4">
+                <div class="navbar-start">
+                    <a
+                        class="btn btn-ghost text-xl hover:bg-avocado-50 text-avocado-800"
+                        href="/"
+                    >
+                        <img
+                            src="/assets/img/logo.png"
+                            alt="Logo"
+                            class="h-8 mr-2"
+                        />
+                        AgroFresh
+                    </a>
                 </div>
-            </nav>
+                <div class="navbar-end">
+                    <a
+                        href="/login"
+                        class="btn btn-ghost hover:bg-avocado-50 text-avocado-700"
+                    >
+                        <i class="fas fa-sign-out-alt mr-2"></i> Cerrar Sesión
+                    </a>
+                </div>
+            </div>
         </header>
 
-        <main>
-            <section class="hero is-small" style="background-color: #776731">
-                <div class="hero-body">
-                    <div class="container has-text-centered">
-                        <p class="title is-3">Bienvenido, Cliente</p>
-                        <p class="subtitle is-5">
-                            Rastrea el estado de tus pedidos de verduras en
-                            tiempo real.
-                        </p>
-                    </div>
+        <main class="flex-grow">
+            <!-- Hero Small -->
+            <section class="bg-avocado-600 text-white py-12">
+                <div class="container mx-auto px-4 text-center">
+                    <h1 class="text-3xl font-bold mb-2">Bienvenido, Cliente</h1>
+                    <p class="text-avocado-100">
+                        Rastrea el estado de tus pedidos de verduras en tiempo
+                        real.
+                    </p>
                 </div>
             </section>
 
-            <section class="section">
-                <div class="container">
-                    <div class="columns is-centered">
-                        <div
-                            class="column is-two-thirds-tablet is-half-desktop"
-                        >
-                            <div class="box">
-                                <label
-                                    class="label is-large has-text-centered mb-4"
-                                >
-                                    🔍 Rastrear Envío
-                                </label>
-
-                                <form action="/obtenerEnvio" method="POST">
-                                    <div class="field has-addons">
-                                        <div
-                                            class="control is-expanded has-icons-left"
-                                        >
-                                            <input
-                                                class="input is-medium is-rounded"
-                                                type="search"
-                                                name="tracking_number"
-                                                placeholder="Ingresa tu número de guía (ej: 101)"
-                                                required
-                                            />
-                                            <span class="icon is-small is-left">
-                                                <i class="fas fa-barcode"></i>
-                                            </span>
-                                        </div>
-                                        <div class="control">
-                                            <button
-                                                type="submit"
-                                                class="button is-medium is-rounded"
-                                                style="
-                                                    background-color: #cacc78;
-                                                    color: white;
-                                                "
-                                            >
-                                                Buscar
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <p class="help">
-                                        Ingresa el ID numérico que recibiste en
-                                        tu confirmación.
-                                    </p>
-                                </form>
-                            </div>
-
-                            <!-- Bloque para mostrar resultados -->
-                            {{ if .encontrado }}
-                            <div class="notification is-success mt-5 shadow">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <span class="icon is-large">
-                                            <i
-                                                class="fas fa-check-circle fa-2x"
-                                            ></i>
-                                        </span>
-                                    </div>
-                                    <div class="media-content">
-                                        <p class="title is-4">
-                                            Envío #{{ .guia }}
-                                        </p>
-                                        <p>
-                                            <strong>Cliente:</strong> {{
-                                            .cliente }}
-                                        </p>
-                                        <p>
-                                            <strong>Productos:</strong> {{
-                                            .productos }}
-                                        </p>
-                                        <p>
-                                            <strong>Estado:</strong> {{ .estatus
-                                            }}
-                                        </p>
-                                        <p>
-                                            <strong
-                                                >Última Actualización:</strong
-                                            >
-                                            {{ .fechaHora }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            {{ else if .resultado }}
-                            <div
-                                class="notification mt-5 shadow"
-                                style="background-color: {{ .color }}; color: white;"
+            <!-- Tracking Section -->
+            <section class="py-12 px-4">
+                <div class="container mx-auto max-w-2xl">
+                    <div
+                        class="card bg-white shadow-xl border border-avocado-100 mb-8"
+                    >
+                        <div class="card-body">
+                            <h2
+                                class="card-title justify-center text-avocado-700 text-xl mb-6"
                             >
-                                <div class="media">
-                                    <div class="media-left">
-                                        <span class="icon is-large">
-                                            <i
-                                                class="fas fa-info-circle fa-2x"
-                                            ></i>
-                                        </span>
+                                🔍 Rastrear Envío
+                            </h2>
+
+                            <form
+                                action="/obtenerEnvio"
+                                method="POST"
+                                class="join w-full"
+                            >
+                                <div class="relative w-full">
+                                    <div
+                                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-avocado-400"
+                                    >
+                                        <i class="fas fa-barcode"></i>
                                     </div>
-                                    <div class="media-content">
-                                        <p class="title is-4 has-text-white">
-                                            Aviso sobre el envío #{{ .guia }}
-                                        </p>
-                                        <p class="subtitle is-5 has-text-white">
-                                            {{ .resultado }}
-                                        </p>
-                                    </div>
+                                    <input
+                                        class="input input-bordered join-item w-full pl-10 focus:outline-none focus:border-avocado-500 bg-avocado-50/30"
+                                        type="search"
+                                        name="tracking_number"
+                                        placeholder="Ingresa tu número de guía (ej: 101)"
+                                        required
+                                    />
                                 </div>
-                            </div>
-                            {{ end }}
+                                <button
+                                    type="submit"
+                                    class="btn bg-avocado-500 hover:bg-avocado-600 text-white join-item border-none"
+                                >
+                                    Buscar
+                                </button>
+                            </form>
+                            <p
+                                class="text-xs text-center text-avocado-400 mt-2"
+                            >
+                                Ingresa el ID numérico que recibiste en tu
+                                confirmación.
+                            </p>
                         </div>
                     </div>
+
+                    <!-- Results Block -->
+                    {{ if .encontrado }}
+                    <div
+                        class="alert bg-white border-l-4 border-avocado-500 shadow-lg p-6 flex items-start"
+                    >
+                        <div class="text-avocado-500 mr-4 mt-1">
+                            <i class="fas fa-check-circle fa-2x"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-avocado-800 mb-2">
+                                Envío #{{ .guia }}
+                            </h3>
+                            <div class="space-y-1 text-avocado-700 text-sm">
+                                <p>
+                                    <span class="font-semibold">Cliente:</span>
+                                    {{ .cliente }}
+                                </p>
+                                <p>
+                                    <span class="font-semibold"
+                                        >Productos:</span
+                                    >
+                                    {{ .productos }}
+                                </p>
+                                <p>
+                                    <span class="font-semibold">Estado:</span>
+                                    <span
+                                        class="badge badge-outline badge-success"
+                                        >{{ .estatus }}</span
+                                    >
+                                </p>
+                                <p>
+                                    <span class="font-semibold"
+                                        >Última Actualización:</span
+                                    >
+                                    {{ .fechaHora }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {{ else if .resultado }}
+                    <div
+                        class="alert shadow-lg flex items-start"
+                        style="background-color: {{ .color }}; color: white;"
+                    >
+                        <div class="mr-4 mt-1">
+                            <i class="fas fa-info-circle fa-2x"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">
+                                Aviso sobre el envío #{{ .guia }}
+                            </h3>
+                            <p class="text-sm opacity-90">{{ .resultado }}</p>
+                        </div>
+                    </div>
+                    {{ end }}
                 </div>
             </section>
         </main>

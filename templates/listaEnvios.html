@@ -1,235 +1,180 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Lista de Envíos - AgroFresh</title>
+        <script src="https://cdn.tailwindcss.com"></script>
         <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+            type="text/css"
         />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            avocado: {
+                                50: "#f3f5f0",
+                                100: "#e5e9de",
+                                200: "#cfd5c1",
+                                300: "#b0bb9b",
+                                400: "#89986d",
+                                500: "#76855d",
+                                600: "#5c6947",
+                                700: "#485239",
+                                800: "#3c4331",
+                                900: "#343a2d",
+                                950: "#1a1e15",
+                            },
+                        },
+                    },
+                },
+            };
+        </script>
     </head>
-    <body style="background-color: #f7f8ee; min-height: 100vh">
-        <header>
-            <nav
-                class="navbar shadow-sm"
-                role="navigation"
-                aria-label="main navigation"
-                style="background-color: #f7f8ee"
-            >
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="/">
-                            <img
-                                src="/assets/img/logo.png"
-                                alt="Logo"
-                                style="max-height: 40px; margin-right: 10px"
-                            />
-                            <strong>AgroFresh Envios</strong>
-                        </a>
+    <body
+        class="bg-avocado-50 min-h-screen flex flex-col font-sans text-avocado-900"
+    >
+        <!-- Navbar -->
+        <header
+            class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 border-b border-avocado-200 shadow-sm"
+        >
+            <div class="navbar container mx-auto px-4">
+                <div class="navbar-start">
+                    <a
+                        class="btn btn-ghost text-xl hover:bg-avocado-50 text-avocado-800"
+                        href="/"
+                    >
+                        <img
+                            src="/assets/img/logo.png"
+                            alt="Logo"
+                            class="h-8 mr-2"
+                        />
+                        AgroFresh
+                    </a>
+                </div>
+                <div class="navbar-end space-x-2">
+                    <a
+                        href="/crearEnvio"
+                        class="btn bg-avocado-400 hover:bg-avocado-500 text-white border-none btn-sm md:btn-md"
+                    >
+                        <i class="fas fa-plus mr-1"></i>
+                        <span class="hidden md:inline">Nuevo Envío</span>
+                    </a>
+                    <a
+                        href="/login"
+                        class="btn btn-outline border-avocado-600 text-avocado-700 hover:bg-avocado-700 hover:text-white btn-sm md:btn-md"
+                    >
+                        <i class="fas fa-sign-out-alt mr-1"></i>
+                        <span class="hidden md:inline">Salir</span>
+                    </a>
+                </div>
+            </div>
+        </header>
 
-                        <div class="navbar-item is-hidden-desktop">
+        <main class="flex-grow py-8 px-4">
+            <div class="container mx-auto">
+                <!-- Breadcrumbs -->
+                <div class="text-sm breadcrumbs text-avocado-500 mb-6">
+                    <ul>
+                        <li>
+                            <a href="/" class="hover:text-avocado-700"
+                                >Inicio</a
+                            >
+                        </li>
+                        <li class="font-bold text-avocado-700">
+                            Lista de Envíos
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card bg-white shadow-xl border border-avocado-100">
+                    <div class="card-body p-0 sm:p-6">
+                        <div
+                            class="flex justify-between items-center p-4 sm:p-0 mb-4"
+                        >
+                            <h1
+                                class="text-2xl font-bold text-avocado-800 flex items-center"
+                            >
+                                <i
+                                    class="fas fa-list-alt mr-3 text-avocado-500"
+                                ></i>
+                                Historial de Envíos
+                            </h1>
                             <a
                                 href="/crearEnvio"
-                                class="button is-small"
-                                style="background-color: #cacc78; color: white"
+                                class="btn btn-sm btn-ghost text-avocado-600 hover:bg-avocado-50 sm:hidden"
                             >
                                 <i class="fas fa-plus"></i>
                             </a>
-                            <a
-                                href="/login"
-                                class="button is-small ml-2"
-                                style="background-color: #65552e; color: white"
-                            >
-                                <i class="fas fa-sign-out-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="navbar-menu">
-                        <div class="navbar-end">
-                            <div class="navbar-item">
-                                <div class="buttons">
-                                    <a
-                                        href="/crearEnvio"
-                                        class="button"
-                                        style="
-                                            background-color: #cacc78;
-                                            color: white;
-                                        "
-                                    >
-                                        <span class="icon"
-                                            ><i class="fas fa-plus"></i
-                                        ></span>
-                                        <span>Nuevo Envío</span>
-                                    </a>
-                                    <a
-                                        href="/login"
-                                        class="button"
-                                        style="
-                                            background-color: #65552e;
-                                            color: white;
-                                        "
-                                    >
-                                        <span class="icon"
-                                            ><i class="fas fa-sign-out-alt"></i
-                                        ></span>
-                                        <span>Cerrar Sesión</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <main>
-            <section class="section">
-                <div class="container">
-                    <nav class="breadcrumb" aria-label="breadcrumbs">
-                        <ul>
-                            <li><a href="/">Inicio</a></li>
-                            <li class="is-active">
-                                <a href="#" aria-current="page"
-                                    >Lista de Envíos</a
-                                >
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <div class="box">
-                        <div class="level">
-                            <div class="level-left">
-                                <div class="level-item">
-                                    <h1
-                                        class="title is-4"
-                                        style="color: #776731"
-                                    >
-                                        <i class="fas fa-list-alt mr-2"></i>
-                                        Historial de Envíos
-                                    </h1>
-                                </div>
-                            </div>
-                            <div class="level-right is-hidden-mobile">
-                                <div class="level-item">
-                                    <a
-                                        href="/crearEnvio"
-                                        class="button is-small"
-                                        style="
-                                            background-color: #f1f3e0;
-                                            color: black;
-                                        "
-                                    >
-                                        Registrar otro envío
-                                    </a>
-                                </div>
-                            </div>
                         </div>
 
-                        <div class="table-container">
-                            <table
-                                class="table is-fullwidth is-striped is-hoverable"
-                            >
-                                <thead style="background-color: #f1f3e0">
+                        <div class="overflow-x-auto">
+                            <table class="table table-zebra w-full">
+                                <!-- head -->
+                                <thead class="bg-avocado-50 text-avocado-700">
                                     <tr>
-                                        <th style="color: #776731">
-                                            <span class="icon-text">
-                                                <span class="icon"
-                                                    ><i
-                                                        class="fas fa-hashtag"
-                                                    ></i
-                                                ></span>
-                                                <span>Pedido</span>
-                                            </span>
-                                        </th>
-                                        <th style="color: #776731">
-                                            <span class="icon-text">
-                                                <span class="icon"
-                                                    ><i
-                                                        class="fas fa-box-open"
-                                                    ></i
-                                                ></span>
-                                                <span>Productos</span>
-                                            </span>
-                                        </th>
-                                        <th style="color: #776731">
-                                            <span class="icon-text">
-                                                <span class="icon"
-                                                    ><i class="fas fa-user"></i
-                                                ></span>
-                                                <span>Cliente</span>
-                                            </span>
-                                        </th>
-                                        <th style="color: #776731">
-                                            <span class="icon-text">
-                                                <span class="icon"
-                                                    ><i class="fas fa-clock"></i
-                                                ></span>
-                                                <span
-                                                    >Última Actualización</span
-                                                >
-                                            </span>
-                                        </th>
-                                        <th style="color: #776731">
-                                            <span class="icon-text">
-                                                <span class="icon"
-                                                    ><i class="fas fa-check"></i
-                                                ></span>
-                                                <span>Estatus</span>
-                                            </span>
-                                        </th>
-                                        <th style="color: #776731">
-                                            <span class="icon-text">
-                                                <span class="icon"
-                                                    ><i class="fas fa-check"></i
-                                                ></span>
-                                                <span>Tracking Number</span>
-                                            </span>
-                                        </th>
+                                        <th>Pedido</th>
+                                        <th>Productos</th>
+                                        <th>Cliente</th>
+                                        <th>Última Actualización</th>
+                                        <th>Estatus</th>
+                                        <th>Tracking</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {{ range .envios }}
-                                    <tr>
+                                    <tr
+                                        class="hover:bg-avocado-50/50 transition-colors"
+                                    >
                                         <td>
-                                            <span
-                                                class="tag is-medium"
-                                                style="
-                                                    background-color: #cacc78;
-                                                    color: white;
-                                                "
+                                            <div
+                                                class="badge bg-avocado-500 text-white border-none p-3 font-mono"
                                             >
-                                                <strong>#{{ .ID }}</strong>
-                                            </span>
+                                                #{{ .ID }}
+                                            </div>
                                         </td>
-                                        <td>{{ .Productos }}</td>
-                                        <td><strong>{{ .Cliente }}</strong></td>
-                                        <td class="is-size-7 has-text-grey">
+                                        <td
+                                            class="font-medium text-avocado-800"
+                                        >
+                                            {{ .Productos }}
+                                        </td>
+                                        <td class="font-bold text-avocado-700">
+                                            {{ .Cliente }}
+                                        </td>
+                                        <td class="text-sm text-gray-500">
                                             {{ .Fecha }}
                                         </td>
-                                        <td class="is-size-7 has-text-grey">
-                                            {{ .Estatus }}
+                                        <td>
+                                            <span
+                                                class="badge badge-ghost badge-sm text-xs"
+                                                >{{ .Estatus }}</span
+                                            >
                                         </td>
-                                        <td class="is-size-7 has-text-grey">
+                                        <td
+                                            class="font-mono text-xs text-gray-500"
+                                        >
                                             {{ .TrackingNumber }}
                                         </td>
                                     </tr>
                                     {{ else }}
                                     <tr>
-                                        <td colspan="4">
+                                        <td
+                                            colspan="6"
+                                            class="text-center py-10"
+                                        >
                                             <div
-                                                class="notification is-warning is-light has-text-centered"
+                                                class="flex flex-col items-center justify-center text-avocado-400"
                                             >
-                                                <span class="icon is-large">
-                                                    <i
-                                                        class="fas fa-box-open fa-2x"
-                                                    ></i>
-                                                </span>
+                                                <i
+                                                    class="fas fa-box-open fa-3x mb-3"
+                                                ></i>
                                                 <p>
                                                     No hay envíos registrados en
                                                     el sistema.
@@ -241,15 +186,9 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <div class="has-text-right mt-3">
-                            <p class="is-size-7 has-text-grey">
-                                Mostrando registros recientes
-                            </p>
-                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </main>
     </body>
 </html>

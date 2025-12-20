@@ -1,164 +1,185 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{{ .titulo }} - AgroFresh Envios</title>
+        <script src="https://cdn.tailwindcss.com"></script>
         <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+            type="text/css"
         />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            avocado: {
+                                50: "#f3f5f0",
+                                100: "#e5e9de",
+                                200: "#cfd5c1",
+                                300: "#b0bb9b",
+                                400: "#89986d",
+                                500: "#76855d",
+                                600: "#5c6947",
+                                700: "#485239",
+                                800: "#3c4331",
+                                900: "#343a2d",
+                                950: "#1a1e15",
+                            },
+                        },
+                    },
+                },
+            };
+        </script>
     </head>
-    <body style="background-color: #f7f8ee">
-        <header>
-            <nav
-                class="navbar"
-                role="navigation"
-                aria-label="main navigation"
-                style="background-color: #f7f8ee"
-            >
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="/">
-                            <img
-                                src="/assets/img/logo.png"
-                                alt="AgroFresh Envios Logo"
-                                style="max-height: 40px; margin-right: 10px"
-                            />
-                            <strong>AgroFresh Envios</strong>
-                        </a>
-
-                        <div class="navbar-item is-hidden-desktop">
-                            <a
-                                href="/login"
-                                class="button is-small"
-                                style="background-color: #65552e; color: white"
-                            >
-                                <strong>Entrar</strong>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="navbar-menu">
-                        <div class="navbar-end">
-                            <div class="navbar-item">
-                                <div class="buttons">
-                                    <a
-                                        href="/login"
-                                        class="button"
-                                        style="
-                                            background-color: #65552e;
-                                            color: white;
-                                        "
-                                    >
-                                        <strong>Iniciar Sesión</strong>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <body
+        class="bg-avocado-50 min-h-screen flex flex-col font-sans text-avocado-900"
+    >
+        <!-- Navbar -->
+        <header
+            class="bg-avocado-50/90 backdrop-blur-sm sticky top-0 z-50 border-b border-avocado-200"
+        >
+            <div class="navbar container mx-auto px-4">
+                <div class="navbar-start">
+                    <a
+                        class="btn btn-ghost text-xl hover:bg-avocado-100 text-avocado-800"
+                        href="/"
+                    >
+                        <img
+                            src="/assets/img/logo.png"
+                            alt="AgroFresh Logo"
+                            class="h-8 mr-2"
+                        />
+                        AgroFresh
+                    </a>
                 </div>
-            </nav>
+                <div class="navbar-end">
+                    <a
+                        href="/login"
+                        class="btn bg-avocado-700 hover:bg-avocado-800 text-white border-none min-h-[2.5rem] h-[2.5rem]"
+                    >
+                        Iniciar Sesión
+                    </a>
+                </div>
+            </div>
         </header>
 
-        <main>
-            <section class="hero is-medium" style="background-color: #776731">
-                <div class="hero-body">
-                    <div class="container has-text-centered">
-                        <p class="title is-1 is-size-3-mobile">
+        <main class="flex-grow">
+            <!-- Hero Section -->
+            <section
+                class="hero min-h-[60vh] bg-avocado-500 text-white relative overflow-hidden"
+            >
+                <div class="hero-content text-center relative z-10">
+                    <div class="max-w-3xl">
+                        <h1 class="text-5xl font-bold mb-6 tracking-tight">
                             Verduras frescas, directas del campo a tu puerta.
-                        </p>
-                        <p class="subtitle is-3 is-size-5-mobile">
+                        </h1>
+                        <p class="py-6 text-xl text-avocado-100 font-light">
                             Calidad y frescura garantizada en cada envío.
+                            Experimenta el sabor real de la naturaleza.
                         </p>
-
-                        <div class="columns is-centered mt-5">
-                            <div
-                                class="column is-half is-three-quarters-mobile"
-                            >
-                                <a
-                                    href="/inicioCliente"
-                                    class="button is-fullwidth"
-                                    style="
-                                        background-color: #cacc78;
-                                        color: white;
-                                    "
-                                >
-                                    Rastrear Envío
-                                </a>
-                            </div>
-                        </div>
+                        <a
+                            href="/inicioCliente"
+                            class="btn bg-avocado-100 text-avocado-800 hover:bg-white border-none btn-lg shadow-lg mt-4"
+                        >
+                            Rastrear Envío
+                        </a>
                     </div>
                 </div>
+                <!-- Abstract decorative circle -->
+                <div
+                    class="absolute top-[-20%] left-[-10%] w-96 h-96 bg-avocado-400 rounded-full opacity-30 blur-3xl"
+                ></div>
+                <div
+                    class="absolute bottom-[-20%] right-[-10%] w-96 h-96 bg-avocado-600 rounded-full opacity-30 blur-3xl"
+                ></div>
             </section>
 
-            <section class="section">
-                <div class="container">
-                    <div class="columns is-variable is-8 is-desktop">
-                        <div class="column has-text-centered">
-                            <article class="box h-100" style="height: 100%">
-                                <div class="content">
-                                    <span class="is-size-1">🥬</span>
-                                    <h3 class="title is-4 mt-2">
-                                        Frescura Insuperable
-                                    </h3>
-                                    <p>
-                                        Seleccionamos las mejores verduras de
-                                        granjas locales para asegurar que
-                                        recibas productos frescos y llenos de
-                                        sabor.
-                                    </p>
+            <!-- Features Section -->
+            <section class="py-20 px-4">
+                <div class="container mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Feature 1 -->
+                        <div
+                            class="card bg-white shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-avocado-100"
+                        >
+                            <div class="card-body items-center text-center">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-avocado-100 flex items-center justify-center text-3xl mb-4"
+                                >
+                                    🥬
                                 </div>
-                            </article>
+                                <h2 class="card-title text-avocado-800">
+                                    Frescura Insuperable
+                                </h2>
+                                <p class="text-avocado-600">
+                                    Seleccionamos las mejores verduras de
+                                    granjas locales para asegurar productos
+                                    llenos de sabor.
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="column has-text-centered">
-                            <article class="box" style="height: 100%">
-                                <div class="content">
-                                    <span class="is-size-1">🚚</span>
-                                    <h3 class="title is-4 mt-2">
-                                        Entrega Rápida
-                                    </h3>
-                                    <p>
-                                        Nuestro sistema de logística optimizado
-                                        garantiza que tus pedidos lleguen a
-                                        tiempo, manteniendo la cadena de frío.
-                                    </p>
+                        <!-- Feature 2 -->
+                        <div
+                            class="card bg-white shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-avocado-100"
+                        >
+                            <div class="card-body items-center text-center">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-avocado-100 flex items-center justify-center text-3xl mb-4"
+                                >
+                                    🚚
                                 </div>
-                            </article>
+                                <h2 class="card-title text-avocado-800">
+                                    Entrega Rápida
+                                </h2>
+                                <p class="text-avocado-600">
+                                    Logística optimizada que garantiza que tus
+                                    pedidos lleguen a tiempo, manteniendo la
+                                    cadena de frío.
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="column has-text-centered">
-                            <article class="box" style="height: 100%">
-                                <div class="content">
-                                    <span class="is-size-1">✅</span>
-                                    <h3 class="title is-4 mt-2">
-                                        Calidad Certificada
-                                    </h3>
-                                    <p>
-                                        Cumplimos con los más altos estándares
-                                        de calidad e higiene en cada etapa,
-                                        desde la cosecha hasta tu hogar.
-                                    </p>
+                        <!-- Feature 3 -->
+                        <div
+                            class="card bg-white shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-avocado-100"
+                        >
+                            <div class="card-body items-center text-center">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-avocado-100 flex items-center justify-center text-3xl mb-4"
+                                >
+                                    ✅
                                 </div>
-                            </article>
+                                <h2 class="card-title text-avocado-800">
+                                    Calidad Certificada
+                                </h2>
+                                <p class="text-avocado-600">
+                                    Cumplimos con los más altos estándares de
+                                    higiene desde la cosecha hasta tu hogar.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
 
-        <footer class="footer" style="background-color: #f7f8ee">
-            <div class="content has-text-centered">
-                <p>
-                    &copy; 2025 <strong>AgroFresh Envios</strong>. Todos los
-                    derechos reservados.
+        <footer
+            class="footer footer-center p-10 bg-avocado-50 text-avocado-600 border-t border-avocado-200"
+        >
+            <aside>
+                <p class="font-bold">
+                    &copy; 2025 AgroFresh Envios. <br />Todos los derechos
+                    reservados.
                 </p>
-            </div>
+            </aside>
         </footer>
     </body>
 </html>

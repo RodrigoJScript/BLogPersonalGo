@@ -1,168 +1,175 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Cambio de Estatus - AgroFresh</title>
+        <script src="https://cdn.tailwindcss.com"></script>
         <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+            type="text/css"
         />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            avocado: {
+                                50: "#f3f5f0",
+                                100: "#e5e9de",
+                                200: "#cfd5c1",
+                                300: "#b0bb9b",
+                                400: "#89986d",
+                                500: "#76855d",
+                                600: "#5c6947",
+                                700: "#485239",
+                                800: "#3c4331",
+                                900: "#343a2d",
+                                950: "#1a1e15",
+                            },
+                        },
+                    },
+                },
+            };
+        </script>
     </head>
-    <body style="background-color: #f7f8ee; min-height: 100vh">
-        <header>
-            <nav
-                class="navbar shadow-sm"
-                role="navigation"
-                aria-label="main navigation"
-                style="background-color: #f7f8ee"
-            >
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="/">
-                            <img
-                                src="/assets/img/logo.png"
-                                alt="Logo"
-                                style="max-height: 40px; margin-right: 10px"
-                            />
-                            <strong>AgroFresh Envios</strong>
-                        </a>
-
-                        <div class="navbar-item is-hidden-desktop">
-                            <a
-                                href="/login"
-                                class="button is-small"
-                                style="background-color: #65552e; color: white"
-                            >
-                                <i class="fas fa-user"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="navbar-menu">
-                        <div class="navbar-end">
-                            <div class="navbar-item">
-                                <a
-                                    href="/login"
-                                    class="button"
-                                    style="
-                                        background-color: #65552e;
-                                        color: white;
-                                    "
-                                >
-                                    <strong>Iniciar Sesión</strong>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+    <body
+        class="bg-avocado-50 min-h-screen flex flex-col font-sans text-avocado-900"
+    >
+        <!-- Navbar -->
+        <header
+            class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 border-b border-avocado-200 shadow-sm"
+        >
+            <div class="navbar container mx-auto px-4">
+                <div class="navbar-start">
+                    <a
+                        class="btn btn-ghost text-xl hover:bg-avocado-50 text-avocado-800"
+                        href="/"
+                    >
+                        <img
+                            src="/assets/img/logo.png"
+                            alt="Logo"
+                            class="h-8 mr-2"
+                        />
+                        AgroFresh
+                    </a>
                 </div>
-            </nav>
+                <div class="navbar-end">
+                    <a
+                        href="/login"
+                        class="btn bg-avocado-700 hover:bg-avocado-800 text-white btn-sm md:btn-md border-none"
+                    >
+                        <i class="fas fa-user mr-2"></i> Iniciar Sesión
+                    </a>
+                </div>
+            </div>
         </header>
 
-        <main>
-            <section class="section">
-                <div class="container">
-                    <div class="columns is-centered">
-                        <div class="column is-one-third-desktop is-half-tablet">
-                            <div class="box">
-                                <h1
-                                    class="title is-4 has-text-centered"
-                                    style="color: #776731"
+        <main class="flex-grow flex items-center justify-center p-4">
+            <div
+                class="card w-full max-w-md bg-white shadow-xl border border-avocado-100"
+            >
+                <div class="card-body">
+                    <h1
+                        class="card-title justify-center text-avocado-800 text-2xl mb-2"
+                    >
+                        <i class="fas fa-edit text-avocado-500 mr-2"></i>
+                        Actualizar Estado
+                    </h1>
+                    <div class="divider my-0"></div>
+
+                    <form
+                        action="/cambioEstatus"
+                        method="post"
+                        class="mt-4 space-y-5"
+                    >
+                        <div class="form-control">
+                            <label class="label" for="id">
+                                <span
+                                    class="label-text font-semibold text-avocado-700"
+                                    >Número de Rastreo (ID)</span
                                 >
-                                    <span class="icon-text">
-                                        <span class="icon"
-                                            ><i class="fas fa-edit"></i
-                                        ></span>
-                                        <span>Actualizar Estado</span>
-                                    </span>
-                                </h1>
-                                <hr />
+                            </label>
+                            <label
+                                class="input input-bordered flex items-center gap-2 focus-within:outline-avocado-500 focus-within:border-avocado-500 bg-avocado-50/50"
+                            >
+                                <i class="fas fa-hashtag text-avocado-400"></i>
+                                <input
+                                    type="text"
+                                    id="id"
+                                    name="id"
+                                    class="grow"
+                                    placeholder="Ej: 105"
+                                    required
+                                />
+                            </label>
+                        </div>
 
-                                <form action="/cambioEstatus" method="post">
-                                    <div class="field">
-                                        <label class="label" for="id"
-                                            >Número de Rastreo (ID)</label
-                                        >
-                                        <div class="control has-icons-left">
-                                            <input
-                                                class="input is-medium"
-                                                type="text"
-                                                id="id"
-                                                name="id"
-                                                placeholder="Ej: 105"
-                                                required
-                                            />
-                                            <span class="icon is-small is-left">
-                                                <i class="fas fa-hashtag"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="field">
-                                        <label class="label" for="status"
-                                            >Nuevo Estatus</label
-                                        >
-                                        <div class="control has-icons-left">
-                                            <div
-                                                class="select is-fullwidth is-medium"
-                                            >
-                                                <select
-                                                    id="status"
-                                                    name="status"
-                                                    required
-                                                >
-                                                    <option
-                                                        value=""
-                                                        disabled
-                                                        selected
-                                                    >
-                                                        Selecciona una opción
-                                                    </option>
-                                                    <option value="preparando">
-                                                        ⏳ Preparando
-                                                    </option>
-                                                    <option value="en_camino">
-                                                        🚚 En Progreso
-                                                    </option>
-                                                    <option value="completado">
-                                                        ✅ Completado
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <span class="icon is-small is-left">
-                                                <i class="fas fa-tasks"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="field mt-5">
-                                        <button
-                                            type="submit"
-                                            class="button is-fullwidth is-medium"
-                                            style="
-                                                background-color: #cacc78;
-                                                color: white;
-                                            "
-                                        >
-                                            <strong>Guardar Cambios</strong>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="has-text-centered mt-3">
-                                <a href="/" class="is-size-7 has-text-grey"
-                                    >← Volver al inicio</a
+                        <div class="form-control">
+                            <label class="label" for="status">
+                                <span
+                                    class="label-text font-semibold text-avocado-700"
+                                    >Nuevo Estatus</span
                                 >
+                            </label>
+                            <div class="relative">
+                                <div
+                                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-avocado-400 z-10"
+                                >
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <select
+                                    id="status"
+                                    name="status"
+                                    class="select select-bordered w-full pl-10 focus:outline-avocado-500 focus:border-avocado-500 bg-avocado-50/50"
+                                    required
+                                >
+                                    <option value="" disabled selected>
+                                        Selecciona una opción
+                                    </option>
+                                    <option value="en_camino">
+                                        🚚 En Progreso
+                                    </option>
+                                    <option value="completado">
+                                        ✅ Completado
+                                    </option>
+                                </select>
                             </div>
                         </div>
+
+                        <div class="form-control mt-6">
+                            <button
+                                type="submit"
+                                class="btn bg-avocado-500 hover:bg-avocado-600 text-white border-none w-full shadow-md"
+                            >
+                                Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+
+                    {{if .message}}
+                    <div
+                        class="alert alert-info bg-blue-50 text-blue-800 border-blue-200 mt-4 text-sm"
+                    >
+                        <i class="fas fa-info-circle"></i>
+                        <span>{{.message}}</span>
+                    </div>
+                    {{end}}
+
+                    <div class="text-center mt-4">
+                        <a
+                            href="/"
+                            class="link link-hover text-avocado-500 text-xs"
+                            >← Volver al inicio</a
+                        >
                     </div>
                 </div>
-            </section>
+            </div>
         </main>
     </body>
 </html>
